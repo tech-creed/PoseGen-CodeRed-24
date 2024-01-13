@@ -77,9 +77,9 @@ def openpose():
 def prompt2img():
     print(request.json['prompt'])
     t2i_data = {
-        "prompt" : request.json['prompt'],
+        "prompt" : "full body portrait pose, " + request.json['prompt'] + ", standing straight to camera",
         "sampler_name" : "DPM++ 2M Karras",
-        "batch_size": 3,
+        "batch_size": 4,
         "steps" : 30,
         "cfg_scale": 7.5,
         "width": width,
@@ -101,17 +101,15 @@ def img2img():
 
     image = request.json['image']
     mask = request.json['mask']
-    pose = request.json['pose']
+    pose = Image.open("../public/posePath/1.png")  
 
     image = d_base64_image(image)
     mask = d_base64_image(mask)
-    pose = d_base64_image(pose)
-
+    #pose = d_base64_image(pose)
 
     image = image.resize((width, height)) 
     mask = mask.resize((width, height)) 
     pose = pose.resize((width, height)) 
-
 
     image = e_image_base64(image)
     mask = e_image_base64(mask)
