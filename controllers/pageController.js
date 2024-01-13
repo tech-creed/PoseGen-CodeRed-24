@@ -14,7 +14,7 @@ const genPandIPage = async(req,res)=>{
     res.render('img_to_2d_gen')
 }
 
-const profileUpdate = async(req,res)=>{
+const profileUpdatePage = async(req,res)=>{
     res.render('pfpUpdate')
 }
 
@@ -23,4 +23,4 @@ const dashboard =  async(req,res)=>{
 }
 
 
-module.exports = { homePage,authPage,genP2IPage,genPandIPage,profileUpdate,dashboard }
+module.exports = { homePage,authPage,genP2IPage,genPandIPage,profileUpdatePage,dashboard }
