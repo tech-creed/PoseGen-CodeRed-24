@@ -1,0 +1,26 @@
+{
+  "name": "posegen-codered-24",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tech-creed/PoseGen-CodeRed-24.git"
+  },
+  "author": "TENSHKUMAR MUKILAN SANTHOSE KEVIN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tech-creed/PoseGen-CodeRed-24/issues"
+  },
+  "homepage": "https://github.com/tech-creed/PoseGen-CodeRed-24#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "multer": "*",
+    "nodemon": "^3.0.2"
+  }
+}
