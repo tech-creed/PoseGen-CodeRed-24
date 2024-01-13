@@ -21,24 +21,24 @@
             </div>
         </div>
         <div class="slider">
-            <form action="" class="loginForm">
+            <form action="/auth/login" method="POST" class="loginForm">
                 <div class="input_container">
                 <div class="formHeading">Login</div>
-                    <input type="text" class="inputs" id="luserName" placeholder="User Name">
+                    <input type="text" class="inputs" name="email" id="luserName" placeholder="Email">
                     <div class="lUserNameDetail details"></div>
-                    <input type="password" class="inputs" id="lpassword" placeholder="Password">
+                    <input type="password" class="inputs" name="password" id="lpassword" placeholder="Password">
                     <div class="lPasswordDetail details"></div>
                     <input type="submit" class="sub">
                 </div>
             </form>
-            <form action="" class="signUpForm">
+            <form action="/auth/signin" method="POST" class="signUpForm">
                 <div class="input_container">
                 <div class="formHeading">SignUp</div>
                     <input type="text" class="inputs" placeholder="User Name" id="suserName">
                     <div class="sUserNameDetails details"></div>
-                    <input type="text" class="inputs" placeholder="Email" id="email">
+                    <input type="text" class="inputs" name="email" placeholder="Email" id="email">
                     <div class="sEmailDetails details"></div>
-                    <input type="password" class="inputs" placeholder="Password" id="spassword">
+                    <input type="password" class="inputs" name="password" placeholder="Password" id="spassword">
                     <div class="sPasswordDetails details"></div>
                     <input type="submit" class="sub" value="SignUp">
                 </div>
