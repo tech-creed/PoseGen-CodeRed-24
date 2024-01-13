@@ -125,7 +125,16 @@
         margin-bottom: 20px;
       }
 
+      .ref-input-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
       #imageInput {
+        display: none;
+      }
+
+      #refImageInput {
         display: none;
       }
 
@@ -144,12 +153,25 @@
         margin-bottom: 20px;
       }
 
+      .ref-medium-image-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
       .btn-center-align {
         display: flex;
         justify-content: center;
         margin-top: 10px;
       }
       .medium-image-container img {
+        max-width: 50%;
+        height: auto;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .ref-medium-image-container img {
         max-width: 50%;
         height: auto;
         cursor: pointer;
@@ -267,6 +289,11 @@
       }
 
       .medium-image-container {
+        display: none;
+      }
+      
+
+      .ref-medium-image-container {
         display: none;
       }
 
@@ -389,10 +416,30 @@
           </div>
         </form>
 
+        <div class="ref-input-container">
+          <input type="file" id="refImageInput" accept="image/*" />
+          <label for="refImageInput" class="custom-file-upload"
+            >Upload Reference Image</label
+          >
+        </div>
+
+        <div class="ref-medium-image-container">
+          <img
+            id="refInputImage"
+            src="#"
+            alt="Uploaded Image"
+          />
+          <img
+            id="keypointImage"
+            src="#"
+            alt="Keypoint Image"
+          />
+        </div>
+
         <div class="input-container">
           <input type="file" id="imageInput" accept="image/*" />
           <label for="imageInput" class="custom-file-upload"
-            >Upload Image</label
+            >Upload Your Image</label
           >
         </div>
 

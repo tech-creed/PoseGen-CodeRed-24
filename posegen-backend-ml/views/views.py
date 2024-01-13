@@ -79,7 +79,7 @@ def prompt2img():
     t2i_data = {
         "prompt" : request.json['prompt'],
         "sampler_name" : "DPM++ 2M Karras",
-        "batch_size": 4,
+        "batch_size": 3,
         "steps" : 30,
         "cfg_scale": 7.5,
         "width": width,
