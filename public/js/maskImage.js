@@ -26,6 +26,7 @@ document
   .addEventListener("change", function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
+    showLoader();
 
     reader.onload = function (e) {
       const img = new Image();
@@ -36,18 +37,28 @@ document
         const resizedImageData = resizeImageToMaxResolution(img);
         const resizedImg = new Image();
         resizedImg.onload = function () {
-          sendImageToBackend(resizedImageData);
-          const imageElement = document.getElementById("inputImage");
-          imageElement.src = resizedImg.src;
+          sendImageToBackend(resizedImageData)
+            .then((imagePath) => {
+              hideLoader();
 
-          canvas.width = resizedImg.width;
-          canvas.height = resizedImg.height;
-          ctx.lineWidth = 25;
-          ctx.drawImage(resizedImg, 0, 0);
+              const imageElement = document.getElementById("inputImage");
+              imageElement.src = resizedImg.src;
 
-          document.querySelector(".input-container").style.display = "none";
-          document.querySelector(".medium-image-container").style.display =
-            "block";
+              canvas.width = resizedImg.width;
+              canvas.height = resizedImg.height;
+              ctx.lineWidth = 25;
+              ctx.drawImage(resizedImg, 0, 0);
+
+              document.querySelector(".input-container").style.display = "none";
+              document.querySelector(".medium-image-container").style.display =
+                "block";
+
+              console.log("Image path from backend:", imagePath);
+            })
+            .catch((error) => {
+              console.error("Error receiving image path:", error);
+              hideLoader();
+            });
         };
         resizedImg.src = resizedImageData;
       };
@@ -56,23 +67,30 @@ document
     reader.readAsDataURL(file);
   });
 
-  function sendImageToBackend(imageData) {
-    fetch("http://localhost:3000/openpose", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ img: imageData }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        const imagePath = data.imagePath;
-        console.log("Image path from backend:", imagePath);
-      })
-      .catch(error => {
-        console.error("Error sending image to backend:", error);
-      });
-  }
+function sendImageToBackend(imageData) {
+  return fetch("http://localhost:3000/openpose", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ imageData: imageData }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const imagePath = data.posePath;
+      return imagePath;
+    });
+}
+
+function showLoader() {
+  document.querySelector(".loader").style.display = "block";
+}
+
+function hideLoader() {
+  document.querySelector(".loader").style.display = "none";
+}
+
+
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
