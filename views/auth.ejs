@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <meta charset="utf-8">
+
+       <link rel="shotcut icon" type="img/png" href="Images/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Poppins:300,400,500,600,700,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
+   <link rel="stylesheet" href="css/auth.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="left">
+                <div class="indicator login">Login</div>
+            </div>
+            <div class="right">
+                <div class="indicator signup">Sign Up</div>
+            </div>
+        </div>
+        <div class="slider">
+            <form action="" class="loginForm">
+                <div class="input_container">
+                <div class="formHeading">Login</div>
+                    <input type="text" class="inputs" id="luserName" placeholder="User Name">
+                    <div class="lUserNameDetail details"></div>
+                    <input type="password" class="inputs" id="lpassword" placeholder="Password">
+                    <div class="lPasswordDetail details"></div>
+                    <input type="submit" class="sub">
+                </div>
+            </form>
+            <form action="" class="signUpForm">
+                <div class="input_container">
+                <div class="formHeading">SignUp</div>
+                    <input type="text" class="inputs" placeholder="User Name" id="suserName">
+                    <div class="sUserNameDetails details"></div>
+                    <input type="text" class="inputs" placeholder="Email" id="email">
+                    <div class="sEmailDetails details"></div>
+                    <input type="password" class="inputs" placeholder="Password" id="spassword">
+                    <div class="sPasswordDetails details"></div>
+                    <input type="submit" class="sub" value="SignUp">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+
+
+</body>
+</html>

@@ -18,5 +18,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/",pageController.homePage)
+router.get("/auth",pageController.authPage)
 
 module.exports = router
