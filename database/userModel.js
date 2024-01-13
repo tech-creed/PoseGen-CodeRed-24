@@ -28,7 +28,7 @@ const createUser = (email, password) => {
 
   const updateUser = (email, gender, age, interest) => {
     return new Promise((resolve, reject) => {
-      db.get('UPDATE FROM user WHERE email = ? SET gender = ?, age = ?, interest = ?;', [email, gender, age, interest], (err, row) => {
+      db.get('UPDATE user SET gender = ?, age = ?, interest = ? WHERE email = ?', [gender, age, interest,email], (err, row) => {
         if (err) {
           reject(err);
         } else {

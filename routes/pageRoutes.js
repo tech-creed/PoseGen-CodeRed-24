@@ -5,7 +5,6 @@ const path = require('path');
 const router = express.Router()
 
 const pageController = require("../controllers/pageController")
-const authController = require("../controllers/authController")
 
 
 const storage = multer.diskStorage({
@@ -25,7 +24,6 @@ router.get("/prompt-to-img",pageController.genP2IPage)
 router.get("/prompt-and-img",pageController.genPandIPage)
 router.get("/profile-update",pageController.profileUpdatePage)
 router.get("/dashboard",pageController.dashboard)
-router.post("/profile-update",authController.profileUpdate)
 
 
 module.exports = router

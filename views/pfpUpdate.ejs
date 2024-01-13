@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Poppins:300,400,500,600,700,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="/css/auth.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
@@ -18,15 +18,17 @@
         </div>
         <div class="slider">
             <div class="form-container">
-                <form id="profileUpdateForm" class="loginForm">
+                <form action="/auth/profile-update" method="post" class="loginForm">
                     <div class="input_container">
                         <div class="formHeading">Profile Update</div>
+
+                        <input type="text" value="<%=email%>" name="email" hidden readonly>
                         <input type="text" class="inputs" name="gender" id="gender" placeholder="Gender">
                         <div class="sUserNameDetails details"></div>
-                        <input type="number" class="inputs" name="age" id="age" placeholder="Age">
+                        <input type="text" class="inputs" name="age" id="age" placeholder="Age">
                         <div class="sEmailDetails details"></div>
                         <input type="text" class="inputs" name="interest" id="interest" placeholder="Interest (comma separated)">
-                        <button type="button" onclick="submitForm()" class="sub">Submit</button>
+                        <button type="submit" class="sub">Submit</button>
                     </div>
                 </form>
             </div>
@@ -34,24 +36,6 @@
     </div>
     <script src="js/auth.js"></script>
 
-    <script>
-        function submitForm() {
-            const form = document.getElementById('profileUpdateForm');
-            const formData = new FormData(form);
-            $.ajax({
-                type: 'POST',
-                url: '/profile-update',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(error) {
-                    console.error(error);
-                }
-            });
-        }
-    </script>
+    
 </body>
 </html>

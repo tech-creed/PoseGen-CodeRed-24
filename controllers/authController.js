@@ -5,8 +5,8 @@ const signin = async (req, res) => {
 console.log(email,password)
     try {
         await userModel.createUser(email, password);
-        res.cookie('email', email);
-        res.redirect('/profile-update');
+        res.cookie('email', email, {hhttpOnly: false});
+        res.render('pfpUpdate', {email:email});
     } catch (error) {
         res.status(500).send('Error creating user');
     }
@@ -19,7 +19,7 @@ const login = async (req, res) => {
         const user = await userModel.getUser(email, password);
         if (user) {
             req.session.user = user;
-            res.cookie('email', user.email);
+            res.cookie('email', user.email,  {hhttpOnly: false});
             res.redirect('/dashboard');
         } else {
             res.redirect('/login');
@@ -30,46 +30,21 @@ const login = async (req, res) => {
 }
 
 const profileUpdate = async (req, res) => {
-    const { gender, age, interest } = req.body;
+    console.log(req.body)
+    const email = req.body.email
+    const gender = req.body.gender
+    const age = req.body.age
+    const interest = req.body.interest
     
-    try {
-        const authenticatedUser = await getAuthenticatedUser(req.cookies); 
-        if (!authenticatedUser) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
-        const updatedUser = await userModel.updateUser(authenticatedUser.email, {
-            gender,
-            age,
-            interest,
-        });
+    const updatedUser = await userModel.updateUser(email,
+        gender,
+        age,
+        interest,
+    );
 
-        return res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
-    } catch (error) {
-        console.error('Error updating profile:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-    }
+    res.redirect('/dashboard');
 }
 
-const getAuthenticatedUser = async (cookies) => {
-    try {
-        const userEmail = cookies.email;
-
-        if (!userEmail) {
-            return null; 
-        }
-
-        const user = await userModel.getUserByEmail(userEmail);
-
-        if (!user) {
-            return null;
-        }
-
-        return user;
-    } catch (error) {
-        console.error('Error getting authenticated user:', error);
-        return null;
-    }
-};
 
 
 module.exports = { signin, login, profileUpdate };
