@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <meta charset="utf-8">
+
+       <link rel="shotcut icon" type="img/png" href="Images/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800|Poppins:300,400,500,600,700,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
+   <link rel="stylesheet" href="css/auth.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="left">
+                <div class="indicator login">Profile Update</div>
+            </div>
+        </div>
+        <div class="slider">
+            <form action="/auth/login" method="POST" class="loginForm">
+                <div class="input_container">
+                <div class="formHeading">Profile Update</div>
+                    <input type="text" class="inputs" name="gender" id="gender" placeholder="Gender">
+                    <div class="sUserNameDetails details"></div>
+                    <input type="number" class="inputs" name="age" id="age" placeholder="age">
+                    <div class="sEmailDetails details"></div>
+                    <input type="text" class="inputs" name="interst" id="interst" placeholder="Interst(, separated)">
+                    <input type="submit" class="sub">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+
+
+</body>
+</html>
