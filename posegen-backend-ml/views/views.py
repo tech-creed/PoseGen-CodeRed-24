@@ -13,6 +13,8 @@ import io
 import base64
 
 modelURL = "http://localhost:7860/"
+width = 240
+height = 420
 
 def d_base64_image(encoding):
     if(encoding.startswith("data:image/")):
@@ -30,7 +32,7 @@ def e_image_base64(image):
 def segmentation():
     image = request.json['img']
     image = d_base64_image(image)
-    image = image.resize((512, 512))
+    image = image.resize((width, height))
 
     image = e_image_base64(image)
 
@@ -41,8 +43,8 @@ def segmentation():
         "batch_size": 1,
         "steps" : 30,
         "cfg_scale": 7.5,
-        "width": 480,
-        "height": 620,
+        "width": width,
+        "height": height,
         "negative_prompt": "",
         "alwayson_scripts":{
             "controlnet":{
@@ -80,8 +82,8 @@ def prompt2img():
         "batch_size": 4,
         "steps" : 30,
         "cfg_scale": 7.5,
-        "width": 420,
-        "height": 680,
+        "width": width,
+        "height": height,
         "negative_prompt": "animation, cartoon, ugly face"
     }
     responce = requests.post(modelURL+'sdapi/v1/txt2img', json=t2i_data)
@@ -106,9 +108,9 @@ def img2img():
     pose = d_base64_image(pose)
 
 
-    image = image.resize((420, 680)) 
-    mask = mask.resize((420, 680)) 
-    pose = pose.resize((420, 680)) 
+    image = image.resize((width, height)) 
+    mask = mask.resize((width, height)) 
+    pose = pose.resize((width, height)) 
 
 
     image = e_image_base64(image)
@@ -132,8 +134,8 @@ def img2img():
     "batch_size": 2,
     "steps": 30,
     "cfg_scale" : 7.5,
-    "width": 420,
-    "height": 680,
+    "width": width,
+    "height": height,
     "negative_prompt":"",
     "mask_blur":4,
     "inpainting_fill":1,
