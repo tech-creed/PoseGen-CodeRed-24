@@ -164,3 +164,18 @@ def img2img():
         image.save('../public/poseGenerated/'+str(i)+".png")
         imgPath.append("/poseGenerated/"+str(i)+".png")
     return jsonify({'generatedImagePath': imgPath})
+
+
+@app.route('/interrogate', methods = ['GET', 'POST'])
+def imgInterrogate():
+    image = request.json['image']
+    
+    i_data = {
+        "image" : image,
+        "model" : "deepdanbooru" # clip
+    }
+    responce = requests.post(modelURL+'sdapi/v1/interrogate', json=i_data)
+
+    print(responce.json()['caption'])
+
+    return jsonify({'caption': responce.json()['caption']}) 
