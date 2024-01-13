@@ -20,6 +20,7 @@ const upload = multer({ storage: storage });
 router.get("/",pageController.homePage)
 router.get("/auth",pageController.authPage)
 router.get("/prompt-to-img",pageController.genP2IPage)
+router.get("/prompt-and-img",pageController.genPandIPage)
 
 
 module.exports = router
