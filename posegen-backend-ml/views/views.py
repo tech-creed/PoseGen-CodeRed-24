@@ -29,7 +29,7 @@ def e_image_base64(image):
     return base64.b64encode(bytes_data).decode('utf-8')
 
 @app.route('/openpose', methods = ['POST'])
-def segmentation():
+def openpose():
     image = request.json['img']
     image = d_base64_image(image)
     image = image.resize((width, height))
@@ -91,8 +91,8 @@ def prompt2img():
     imgPath = []
     for i in range(len(responce.json()['images'])):
         image = d_base64_image(responce.json()['images'][i])
-        image.save('../public/generated/'+str(i)+".png")
-        imgPath.append("/generated/"+str(i)+".png")
+        image.save('../public/textGenerated/'+str(i)+".png")
+        imgPath.append("/textGenerated/"+str(i)+".png")
 
     return jsonify({'generatedImagePath': imgPath}) 
 
@@ -159,10 +159,10 @@ def img2img():
     responce = requests.post(modelURL+'sdapi/v1/img2img', json=i2i_data)
     imgPath = []
     imageOrg = d_base64_image(image)
-    imageOrg.save('../public/generated/org.png')
+    imageOrg.save('../public/poseGenerated/org.png')
 
     for i in range(len(responce.json()['images'])):
         image = d_base64_image(responce.json()['images'][i])
-        image.save('../public/generated/'+str(i)+".png")
-        imgPath.append("/generated/"+str(i)+".png")
+        image.save('../public/poseGenerated/'+str(i)+".png")
+        imgPath.append("/poseGenerated/"+str(i)+".png")
     return jsonify({'generatedImagePath': imgPath})
