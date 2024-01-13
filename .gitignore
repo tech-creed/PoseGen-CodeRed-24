@@ -1,1 +1,3 @@
 /node_modules
+/posegen-backend-ml/__pycache__
+/posegen-backend-ml/views/__pycache__

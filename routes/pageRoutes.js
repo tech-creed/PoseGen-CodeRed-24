@@ -21,6 +21,8 @@ router.get("/",pageController.homePage)
 router.get("/auth",pageController.authPage)
 router.get("/prompt-to-img",pageController.genP2IPage)
 router.get("/prompt-and-img",pageController.genPandIPage)
+router.get("/profile-update",pageController.profileUpdate)
+router.get("/dashboard",pageController.dashboard)
 
 
 module.exports = router
