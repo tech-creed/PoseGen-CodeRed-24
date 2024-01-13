@@ -103,12 +103,17 @@ def img2img():
 
     image = d_base64_image(image)
     mask = d_base64_image(mask)
+    pose = d_base64_image(pose)
+
 
     image = image.resize((420, 680)) 
     mask = mask.resize((420, 680)) 
+    pose = pose.resize((420, 680)) 
+
 
     image = e_image_base64(image)
     mask = e_image_base64(mask)
+    pose = e_image_base64(pose)
 
     # image = image.split(',')[-1]
     # mask = mask.split(',')[-1]
@@ -136,9 +141,14 @@ def img2img():
     "alwayson_scripts":{
             "controlnet":{
                 "args":[{
-                    "input_image" : image,
+                    "input_image" : pose,
                     "module": None,
                     "model": "control_v11p_sd15_openpose [cab727d4]"
+                },
+                {
+                    "input_image" : image,
+                    "module": "reference_only",
+                    "model": None
                 }]
             }
         }
