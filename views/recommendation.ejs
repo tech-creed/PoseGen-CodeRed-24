@@ -38,6 +38,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="css/promptStyle.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="/css/card.css">
+
 </head>
 <body>
 
@@ -90,8 +97,22 @@
 
     <br />
     <br />
-
-
+    <ul>
+      <% const existingInterests = ['casual', 'christmas', 'dance', 'gym', 'playing', 'sitting', 'vechicle', 'yoga']; %>
+        <% const userInterests = user.interest.split(',').map(interest => interest.trim()) %>
+        <% for (const interest of userInterests) { %>
+            <% if (existingInterests.includes(interest)) { %>
+                <li><strong><%= interest %></strong></li>
+                <div class = "cardss">
+                <% for (let i = 1; i <= 4; i++) { %>
+                    <div class="card">
+                        <img src="/img/pose/<%= interest %>/<%= interest %> (<%= i %>).jpg" alt="<%= i %>.jpg">
+                    </div>
+                <% } %>
+              </div>
+            <% } %>
+        <% } %>
+    </ul>
 
     </div>
   </div>
