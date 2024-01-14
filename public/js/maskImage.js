@@ -108,6 +108,8 @@ function sendImageToBackend(imageData) {
   })
     .then((response) => response.json())
     .then((data) => {
+
+      document.getElementById('prompt-textarea').value = data.caption;
       const imagePath = data.posePath;
       return imagePath;
     });
@@ -123,8 +125,8 @@ function getBase64(file) {
 }
 
 function resizeImageToMaxResolution(image) {
-  const maxWidth = 512;
-  const maxHeight = 512;
+  const maxWidth = 240;
+  const maxHeight = 420;
   let width = image.width;
   let height = image.height;
 
@@ -231,14 +233,6 @@ document
           const imgWrapper = document.createElement("div");
           imgWrapper.classList.add("generated-image");
 
-          const img = document.createElement("img");
-          img.src = "/generated/org.png";
-          img.alt = "Generated Image";
-          img.onclick = function () {
-            openGeneratedLightbox(path);
-          };
-
-          imgWrapper.appendChild(img);
           generatedImagesContainer.appendChild(imgWrapper);
           generatedImages.forEach((path) => {
             const imgWrapper = document.createElement("div");
@@ -267,7 +261,7 @@ document
 function initializeCanvas() {
   canvas = document.getElementById("popUpCanvas");
   ctx = canvas.getContext("2d");
-  ctx.lineWidth = 50;
+  ctx.lineWidth = 75;
   ctx.lineCap = "round";
   ctx.strokeStyle = "white";
   ctx.fillStyle = "black";

@@ -71,7 +71,13 @@ def openpose():
         imageTmp.save('../public/posePath/'+str(i)+".png")
         imgPath.append("/posePath/"+str(i)+".png")
 
-    return jsonify({'posePath': imgPath})
+    i_data = {
+        "image" : image,
+        "model" : "deepdanbooru" # clip
+    }
+    responce = requests.post(modelURL+'sdapi/v1/interrogate', json=i_data)
+
+    return jsonify({'posePath': imgPath, 'caption':responce.json()['caption']})
 
 @app.route('/text2img', methods = ['GET', 'POST'])
 def prompt2img():
