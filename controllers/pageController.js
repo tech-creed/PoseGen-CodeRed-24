@@ -1,3 +1,5 @@
+const userModel = require('../database/userModel')
+
 const homePage = async(req,res)=>{
     res.render('index')
 }
@@ -14,13 +16,15 @@ const genPandIPage = async(req,res)=>{
     res.render('img_to_2d_gen')
 }
 
-const profileUpdatePage = async(req,res)=>{
-    res.render('pfpUpdate')
-}
-
 const dashboard =  async(req,res)=>{
     res.render('dashboard')
 }
 
+const recPage = async(req,res)=>{
+    const userEmail = req.cookies.email;
+    const user = await userModel.getUserByEmail(userEmail)
+    res.render('recommendation', { user });
+}
 
-module.exports = { homePage,authPage,genP2IPage,genPandIPage,profileUpdatePage,dashboard }
+
+module.exports = { homePage,authPage,genP2IPage,genPandIPage,dashboard,recPage }
